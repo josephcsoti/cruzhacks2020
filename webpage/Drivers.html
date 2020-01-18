@@ -65,11 +65,7 @@
         console.log(data);
         Object.entries(data).forEach(([key, value]) => {
             let old = document.getElementById("test").innerHTML + "<br>";
-            console.log(value);
-            Object.entries(value).forEach(([type, num]) => {
-                let last = document.getElementById("test").innerHTML + " "
-                document.getElementById("test").innerHTML = old + key + " : " + last + " | " + type + ": " + num;
-            })
+            document.getElementById("test").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color;
         })
     }
 
@@ -85,16 +81,25 @@
             let HBO = jsonInt(data["time_hbo"]);
             let Hulu = jsonInt(data["time_hulu"]);
             let Netflix = jsonInt(data["time_netflix"]);
-            //sends value to console
-            // console.log(HBO,'\n',Hulu,'\n',Netflix,'\n');
-
+            //finds global values 
+            let GHBO = jsonInt(data["global_hbo"]);
+            let GHulu = jsonInt(data["global_hulu"]);
+            let GNetflix = jsonInt(data["global_netflix"]);
             //creates new json dictonary of values for websites and returns that
             let res = {
                 "Netflix": Netflix,
                 "HBO": HBO,
                 "Hulu": Hulu
             };
-            console.log(res, '\n');
+            let globe ={
+                "Netflix": GNetflix,
+                "Netavg":calculate("Netflix",GNetflix),
+                "HBO": GHBO,
+                "Havg":calculate("HBO",GHBO),
+                "Hulu": GHulu,
+                "Huavg":calculate("Hulu",GHulu),
+            }
+            console.log(globe);
             return res;
         })
         .then((res) => {
@@ -109,7 +114,7 @@
                 //decides if subscription is good or bad value
                 //sends Hex value color code depending on how close it is to baseline
                 let avg= calculate(key, value);
-                temp["Dollars/Hour"]=avg;
+                temp["DollarsPerHour"]=avg;
                 temp["color"] = getColor(avg, UV);
                 temp["Fair"] = getFair(avg, UV);
                 //###############################################################################################################
@@ -136,6 +141,5 @@
         .then((UI) => {
             updateUI(UI)
         })
-        //test
 </script>
 </html>
