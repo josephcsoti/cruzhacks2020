@@ -7,7 +7,9 @@
 
 <body>
 
-    <div id="test">
+    <div id="Personal">
+    <div id="Cost">
+    <div id="global">
 
 </body>
 
@@ -18,6 +20,7 @@
     Net = 8.99;
     H = 14.99;
     Hu = 5.99;
+    Cost=Net+H+Hu;
     //helper function that calculates avg value per time
     let calculate = (service, time) => {
         //creates defulat Cost(C) value
@@ -62,11 +65,16 @@
     }
     //funtion that Updates UI values
     let updateUI = (data) => {
+        TotalTime=0;
         console.log(data);
+        //personal data for each subscription service that month
         Object.entries(data).forEach(([key, value]) => {
-            let old = document.getElementById("test").innerHTML + "<br>";
-            document.getElementById("test").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color;
+            let old = document.getElementById("Personal").innerHTML + "<br>";
+            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color;
+            TotalTime+=parseInt(value.time);
         })
+        //personal totals for the month
+        document.getElementById("Cost").innerHTML = "Total monthly cost is $"+Cost+" | Average Cost $"+(Cost/TotalTime).toFixed(2)+" per Hour this month";
     }
 
     fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/dylan/')
@@ -86,20 +94,26 @@
             let GHulu = jsonInt(data["global_hulu"]);
             let GNetflix = jsonInt(data["global_netflix"]);
             //creates new json dictonary of values for websites and returns that
+            //json for global data to be sent to UI
+            let globe ={
+                "Netflix": GNetflix,
+                "HBO": GHBO,
+                "Hulu": GHulu,
+            }
+            console.log(globe);
+            Object.entries(globe).forEach(([key, value]) => {
+            let old = document.getElementById("Personal").innerHTML + "<br>";
+            document.getElementById("Personal").innerHTML = old + key +": "+value
+            })
+
+
+
+            //json for personal data
             let res = {
                 "Netflix": Netflix,
                 "HBO": HBO,
                 "Hulu": Hulu
             };
-            let globe ={
-                "Netflix": GNetflix,
-                "Netavg":calculate("Netflix",GNetflix),
-                "HBO": GHBO,
-                "Havg":calculate("HBO",GHBO),
-                "Hulu": GHulu,
-                "Huavg":calculate("Hulu",GHulu),
-            }
-            console.log(globe);
             return res;
         })
         .then((res) => {
