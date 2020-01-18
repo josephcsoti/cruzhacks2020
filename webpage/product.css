@@ -2,6 +2,18 @@
   max-width: 960px;
 }
 
+.move{
+
+  position: relative;
+
+  left: 40px;
+}
+
+.hour {  
+
+  font-size: 30px;
+}
+
 /*
  * Custom translucent site header
  */
