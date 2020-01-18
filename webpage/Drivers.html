@@ -6,55 +6,154 @@
 </head>
 
 <body>
-    <script>
-        let calculate=(service, time) =>{
-            //creates defulat Cost(C) value
-            let C= 1
-            //finds C value based on which servie the average is being calculated for
-            if (service =="Netflix"){
-                C=8.99;
-            }
-            if (service=="HBO"){
-                C=14.99;
-            }
-            if (service=="Hulu"){
-                C=5.99;
-            }
-            //calculates Average cost per time
-            let avg = C/time;
-            //decides if subscription is good or bad value
-            //using $1 per hour as temporary baseline for good
-            if (avg > 1) return (avg,False);
-            else return (avg,True);
-        }
 
-        fetch('http://example.com')
-        //grabs json data from servier
-            .then((data) => {
-                return data.json();
-            })
-            .then((json) => {
-                //finds specific times for each site
-                let Netflix = json["netflix"]["time"]
-                let HBO = json["HBO"]["time"]
-                let Hulu = json["HULU"]["time"]
-                //creates new json dictonary of values for websites and returns that
-                let res = {
-                    "Netflix": Netflix,
-                    "HBO": HBO,
-                    "Hulu": Hulu
-                };
+    <div id="Personal">
+    <div id="Cost">
+    <div id="global">
 
-                return res;
-            })
-            .then((res) => {
-                //calculates averages and keep/cancel for each element in the Dictonary
-                res.forEach((ele) => {
-                    let (avg, keep) = calculate(ele)
-                });
-
-            })
-    </script>
 </body>
 
+<script>
+    //UV is user value based(will eventually be based on the users settings)
+    //other variables are costs of various servises that could be changed based on what version of ther service the user has
+    UV = 1;
+    Net = 8.99;
+    H = 14.99;
+    Hu = 5.99;
+    Cost=Net+H+Hu;
+    //helper function that calculates avg value per time
+    let calculate = (service, time) => {
+        //creates defulat Cost(C) value
+        let C = 1
+        //finds C value based on which servie the average is being calculated for
+        if (service == "Netflix") {
+            C = Net;
+        }
+        if (service == "HBO") {
+            C = H;
+        }
+        if (service == "Hulu") {
+            C = Hu;
+        }
+        //calculates Average cost per time
+        let avg = C / time;
+        return avg.toFixed(2);
+    }
+    //helper functuin to find color Value based on avg compared to UV
+    let getColor = (avg, UV) => {
+        let Color = "#000000"
+        if (avg > UV) {
+            if (avg > (UV * 1.5)) Color = "#FF0000";
+            else Color = "#FF7000";
+        }
+        else if (avg == UV) Color = "#FFFF00";
+        else if (avg < UV) {
+            if (avg > (UV * 0.5)) Color = "#70FF00";
+            else Color = "#00FF00";
+        }
+        return Color;
+    }
+    //helper functuin to find fair bool based on avg compared to UV
+    let getFair = (avg, UV) => {
+        let Fair = true;
+        if (avg > UV) Fair = false;
+        return Fair;
+    }
+    //helper funciton to get the time value for each server
+    let jsonInt = (json) => {
+        return json["integerValue"]
+    }
+    //funtion that Updates UI values
+    let updateUI = (data) => {
+        TotalTime=0;
+        console.log(data);
+        //personal data for each subscription service that month
+        Object.entries(data).forEach(([key, value]) => {
+            let old = document.getElementById("Personal").innerHTML + "<br>";
+            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color;
+            TotalTime+=parseInt(value.time);
+        })
+        //personal totals for the month
+        document.getElementById("Cost").innerHTML = "Total monthly cost is $"+Cost+" | Average Cost $"+(Cost/TotalTime).toFixed(2)+" per Hour this month";
+    }
+
+    fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/dylan/')
+        //grabs json data from servier
+        .then((data) => {
+            return data.json();
+        })
+        .then((json) => {
+            // accsesses dara in json file
+            let data = json["fields"];
+            //finds specific times for each site
+            let HBO = jsonInt(data["time_hbo"]);
+            let Hulu = jsonInt(data["time_hulu"]);
+            let Netflix = jsonInt(data["time_netflix"]);
+            //finds global values 
+            let GHBO = jsonInt(data["global_hbo"]);
+            let GHulu = jsonInt(data["global_hulu"]);
+            let GNetflix = jsonInt(data["global_netflix"]);
+            //creates new json dictonary of values for websites and returns that
+            //json for global data to be sent to UI
+            let globe ={
+                "Netflix": GNetflix,
+                "HBO": GHBO,
+                "Hulu": GHulu,
+            }
+            console.log(globe);
+            Object.entries(globe).forEach(([key, value]) => {
+            let old = document.getElementById("Personal").innerHTML + "<br>";
+            document.getElementById("Personal").innerHTML = old + key +": "+value
+            })
+
+
+
+            //json for personal data
+            let res = {
+                "Netflix": Netflix,
+                "HBO": HBO,
+                "Hulu": Hulu
+            };
+            return res;
+        })
+        .then((res) => {
+            //creating new json to hold newer values
+            let UI = {};
+            //calculates averages, keep/cancel, and color for each element in the Dictonary
+            Object.entries(res).forEach(([key, value]) => {
+                //creates temp json to hold temp values before being added to full UI json
+                let temp = {}
+                temp["time"] = value;
+                //calculates avg value per time
+                //decides if subscription is good or bad value
+                //sends Hex value color code depending on how close it is to baseline
+                let avg= calculate(key, value);
+                temp["DollarsPerHour"]=avg;
+                temp["color"] = getColor(avg, UV);
+                temp["Fair"] = getFair(avg, UV);
+                //###############################################################################################################
+                //old code that sends values to console log
+                //
+                //
+                // if (avg > UV) {
+                //     if (avg > (UV * 1.5)) console.log(key + ':$' + avg.toFixed(2) + " per hour: Not Fair" + " | Color: #FF0000");
+                //     else console.log(key + ':$' + avg.toFixed(2) + " per hour: Not Fair" + " | Color: #FF7000");
+                // }
+                // else if (avg == UV) console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #FFFF00");
+                // else if (avg < UV) {
+                //     if (avg > (UV * 0.5)) console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #70FF00");
+                //     else console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #00FF00");
+                // }
+                //
+                //###############################################################################################################
+
+                UI[key] = temp
+            })
+            return UI;
+        })
+        //sends UI json to be updated to the website UI
+        .then((UI) => {
+            updateUI(UI)
+        })
+</script>
 </html>
