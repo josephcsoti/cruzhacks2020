@@ -7,51 +7,71 @@
 
 <body>
     <script>
-        let calculate=(service, time) =>{
+        UV = 1;
+        let calculate = (service, time) => {
             //creates defulat Cost(C) value
-            let C= 1
+            let C = 1
             //finds C value based on which servie the average is being calculated for
-            if (service =="Netflix"){
-                C=8.99;
+            if (service == "Netflix") {
+                C = 8.99;
             }
-            if (service=="HBO"){
-                C=14.99;
+            if (service == "HBO") {
+                C = 14.99;
             }
-            if (service=="Hulu"){
-                C=5.99;
+            if (service == "Hulu") {
+                C = 5.99;
             }
             //calculates Average cost per time
-            let avg = C/time;
-            //decides if subscription is good or bad value
-            //using $1 per hour as temporary baseline for good
-            if (avg > 1) return (avg,False);
-            else return (avg,True);
+            let avg = C / time;
+            return avg;
+        }
+        //helper funciton to get the time value for each server
+        let jsonInt = (json) => {
+            return json["integerValue"]
         }
 
-        fetch('http://example.com')
-        //grabs json data from servier
+        fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/dylan/')
+            //grabs json data from servier
             .then((data) => {
                 return data.json();
             })
             .then((json) => {
+                // accsesses dara in json file
+                let data = json["fields"];
                 //finds specific times for each site
-                let Netflix = json["netflix"]["time"]
-                let HBO = json["HBO"]["time"]
-                let Hulu = json["HULU"]["time"]
+                let HBO = jsonInt(data["time_hbo"]);
+                let Hulu = jsonInt(data["time_hulu"]);
+                let Netflix = jsonInt(data["time_netflix"]);
+                //sends value to console
+                // console.log(HBO,'\n',Hulu,'\n',Netflix,'\n');
+
                 //creates new json dictonary of values for websites and returns that
                 let res = {
                     "Netflix": Netflix,
                     "HBO": HBO,
                     "Hulu": Hulu
                 };
-
+                console.log(res, '\n');
                 return res;
             })
             .then((res) => {
                 //calculates averages and keep/cancel for each element in the Dictonary
-                res.forEach((ele) => {
-                    let (avg, keep) = calculate(ele)
-                });
+                Object.entries(res).forEach(([key, value]) => {
+                    let avg = calculate(key, value);
+                    //decides if subscription is good or bad value
+                    //using $1 per hour as temporary baseline for good
+                    //sends Hex value color code depending on how close it is to baseline
+                    if (avg > UV) {
+                        if (avg > (UV * 1.5)) console.log(key + ':$' + avg.toFixed(2) + " per hour: Not Fair" + " | Color: #FF0000");
+                        else console.log(key + ':$' + avg.toFixed(2) + " per hour: Not Fair" + " | Color: #FF7000");
+                    }
+                    else if (avg == UV) console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #FFFF00");
+                    else if (avg < UV) {
+                        if (avg > (UV * 0.5)) console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #70FF00");
+                        else console.log(key + ':$' + avg.toFixed(2) + " per hour: Fair" + " | Color: #00FF00");
+                    }
+                })
+
 
             })
     </script>
