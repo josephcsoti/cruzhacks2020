@@ -19,17 +19,18 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 // Global watch list
-let URL_list = ["https://www.youtube.com/", "https://www.netflix.com/", "https://www.hulu.com/","https://www.hbo.com/","https://www.xfinity.com/", "https://www.crunchyroll.com/","https://www.disneyplus.com/", "https://www.apple.com/apple-tv-plus/","https://www.cinemax.com/","https://www.amazon.com/Prime-Video/","https://www.adultswim.com/streams", "https://www.fubo.tv/",]
+let URL_list = ["https://www.youtube.com/", "https://www.netflix.com/", "https://www.hulu.com/","https://www.hbo.com/","https://www.xfinity.com/", "https://www.crunchyroll.com/","https://www.disneyplus.com/", "https://www.apple.com/apple-tv-plus/","https://www.amazon.com/Prime-Video/"]
 
 //URL Parsing Function 
 let IsInList = (url) => {
+  let answer = false
   URL_list.forEach(element => {
     if (url.includes(element)){
-      alert(element)
-      return true
+      //alert(element)
+      answer = true
     }
   })
-  return false 
+  return answer 
 }
 // Global history
 let tabHist = []
@@ -48,23 +49,35 @@ let deltaCalc = (TH, now) => {
   tabHist = []
 }
 
-// Listen to tab change
-chrome.tabs.onActivated.addListener((activeInfo) => {
+let fetchData = () => {
   chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, (tabs) => {
     let url = tabs[0].url;
     if (tabHist.length === 2){
       deltaCalc(tabHist, Date.now())
     }
+    //alert(IsInList(url))
     if (IsInList(url)){ 
         let timeStart = Date.now()
         tabHist = [url, timeStart];
     }
+  })
+}
+
+// Listen to tab change
+chrome.tabs.onActivated.addListener((activeInfo) => { 
+    fetchData()
   });
-});
 
 // listen to tab close
 chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
   if (tabHist.length === 2){
     deltaCalc(tabHist, Date.now())
   }
-});
+})
+
+//listen to tab reload
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if(changeInfo.url != null){
+    fetchData()
+  }
+})
