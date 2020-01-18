@@ -247,12 +247,13 @@
   //helper functuin to find color Value based on avg compared to UV
   let getColor = (avg, UV) => {
     let Color = "#000000";
-    if (avg > UV) {
-      if (avg > (UV * 1.5)) Color = "#FF0000";
+    if (avg > 1.2*UV) {
+      if (avg > (UV * 1.6)) Color = "#FF0000";
       else Color = "#FF7000";
     }
-    else if (avg <= UV) {
-      if (avg > (UV * 0.5)) Color = "#70FF00";
+    else if(avg<=1.2*UV&&avg>0.8*UV) Color = "#FFE000";
+    else if (avg <= 0.8*UV) {
+      if (avg > (UV * 0.4)) Color = "#70FF00";
       else Color = "#00FF00";
     }
     return Color;
