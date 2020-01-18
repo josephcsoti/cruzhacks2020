@@ -6,10 +6,14 @@
 </head>
 
 <body>
+    The Global Averages are:
+    <div id="global"><br></div>
 
-    <div id="Personal">
-    <div id="Cost">
-    <div id="global">
+    <div id="Name"></div>
+    <div id="Cost"><br></div>
+
+    your stats for each service are:
+    <div id="Personal"><br></div>
 
 </body>
 
@@ -17,23 +21,47 @@
     //UV is user value based(will eventually be based on the users settings)
     //other variables are costs of various servises that could be changed based on what version of ther service the user has
     UV = 1;
-    Net = 8.99;
+    Ne = 8.99;
     H = 14.99;
     Hu = 5.99;
-    Cost=Net+H+Hu;
+    YT=11.99;
+    Xf=29.99;
+    Cr=7.99;
+    Dp=6.99;
+    Ap=4.99;
+    Az=12.99;
+    Cost=Ne+H+Hu+YT+Xf+Cr+Dp+Ap+Az;
     //helper function that calculates avg value per time
     let calculate = (service, time) => {
         //creates defulat Cost(C) value
         let C = 1
         //finds C value based on which servie the average is being calculated for
         if (service == "Netflix") {
-            C = Net;
+            C = Ne;
         }
         if (service == "HBO") {
             C = H;
         }
         if (service == "Hulu") {
             C = Hu;
+        }
+        if (service == "Youtube") {
+            C = YT;
+        }
+        if (service == "Xfinity") {
+            C = Xf;
+        }
+        if (service == "Crunchyroll") {
+            C = Cr;
+        }
+        if (service == "DisneyPlus") {
+            C = Dp;
+        }
+        if (service == "AppleTV") {
+            C = Ap;
+        }
+        if (service == "AmazonPrime") {
+            C = Az;
         }
         //calculates Average cost per time
         let avg = C / time;
@@ -63,18 +91,22 @@
     let jsonInt = (json) => {
         return json["integerValue"]
     }
+    //helper funciton to get the time value for each server
+    let jsonString = (json) => {
+        return json["stringValue"]
+    }
     //funtion that Updates UI values
     let updateUI = (data) => {
         TotalTime=0;
         console.log(data);
         //personal data for each subscription service that month
         Object.entries(data).forEach(([key, value]) => {
-            let old = document.getElementById("Personal").innerHTML + "<br>";
-            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color;
+            let old = document.getElementById("Personal").innerHTML;
+            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color+"<br>";
             TotalTime+=parseInt(value.time);
         })
         //personal totals for the month
-        document.getElementById("Cost").innerHTML = "Total monthly cost is $"+Cost+" | Average Cost $"+(Cost/TotalTime).toFixed(2)+" per Hour this month";
+        document.getElementById("Cost").innerHTML = "Total monthly cost is $"+Cost.toFixed(2)+" | Average Cost $"+(Cost/TotalTime).toFixed(2)+" per Hour this month";
     }
 
     fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/dylan/')
@@ -89,30 +121,54 @@
             let HBO = jsonInt(data["time_hbo"]);
             let Hulu = jsonInt(data["time_hulu"]);
             let Netflix = jsonInt(data["time_netflix"]);
+            // let Youtube = jsonInt(data["time_youtube"]);
+            // let Xfinity = jsonInt(data["time_xfinity"]);
+            // let Crunchyroll = jsonInt(data["time_crunchyroll"]);
+            // let DisneyPlus = jsonInt(data["time_disneyplus"]);
+            // let AppleTV = jsonInt(data["time_appletv"]);
+            // let AmazonPrime = jsonInt(data["time_amazonprime"]);
             //finds global values 
             let GHBO = jsonInt(data["global_hbo"]);
             let GHulu = jsonInt(data["global_hulu"]);
             let GNetflix = jsonInt(data["global_netflix"]);
+            // let GYoutube = jsonInt(data["global_youtube"]);
+            // let GXfinity = jsonInt(data["global_xfinity"]);
+            // let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
+            // let GDisneyPlus = jsonInt(data["global_disneyplus"]);
+            // let GAppleTV = jsonInt(data["global_appletv"]);
+            // let GAmazonPrime = jsonInt(data["global_amazonprime"]);
+            //gets name and sends it to UI
+            let Name=jsonString(data["name"]);
+            document.getElementById("Name").innerHTML = "Hello "+Name+" your monthly spending is:"
             //creates new json dictonary of values for websites and returns that
             //json for global data to be sent to UI
             let globe ={
                 "Netflix": GNetflix,
                 "HBO": GHBO,
                 "Hulu": GHulu,
+                // "Youtube":GYoutube,
+                // "Xfinity":GXfinity,
+                // "Crunchyroll":GCrunchyroll,
+                // "DisneyPlus":GDisneyPlus,
+                // "AppleTV":GAppleTV,
+                // "AmazonPrime":GAmazonPrime,
             }
             console.log(globe);
             Object.entries(globe).forEach(([key, value]) => {
-            let old = document.getElementById("Personal").innerHTML + "<br>";
-            document.getElementById("Personal").innerHTML = old + key +": "+value
+            let old = document.getElementById("global").innerHTML;
+            document.getElementById("global").innerHTML = old + key +": "+value+"<br>"
             })
-
-
-
             //json for personal data
             let res = {
                 "Netflix": Netflix,
                 "HBO": HBO,
-                "Hulu": Hulu
+                "Hulu": Hulu,
+                // "Youtube":Youtube,
+                // "Xfinity":Xfinity,
+                // "Crunchyroll":Crunchyroll,
+                // "DisneyPlus":DisneyPlus,
+                // "AppleTV":AppleTV,
+                // "AmazonPrime":AmazonPrime,
             };
             return res;
         })
