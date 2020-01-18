@@ -102,7 +102,7 @@
         //personal data for each subscription service that month
         Object.entries(data).forEach(([key, value]) => {
             let old = document.getElementById("Personal").innerHTML;
-            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+"   Dollars/Hour:  "+value.DollarsPerHour+"   Fair: "+value.Fair+" Color Hex code: "+value.color+"<br>";
+            document.getElementById("Personal").innerHTML = old + key + "|| Time: " +value.time+" hours |  Dollars/Hour:  $"+value.DollarsPerHour+" |  Fair: "+value.Fair+" | Color Hex code: "+value.color+"<br>";
             TotalTime+=parseInt(value.time);
         })
         //personal totals for the month
@@ -156,7 +156,7 @@
             console.log(globe);
             Object.entries(globe).forEach(([key, value]) => {
             let old = document.getElementById("global").innerHTML;
-            document.getElementById("global").innerHTML = old + key +": "+value+"<br>"
+            document.getElementById("global").innerHTML = old + key +": "+value+" hours <br>"
             })
             //json for personal data
             let res = {
