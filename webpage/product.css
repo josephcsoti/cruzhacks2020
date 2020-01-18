@@ -2,6 +2,31 @@
   max-width: 960px;
 }
 
+.pad-up {
+  padding-top: 2cm;
+}
+
+
+.pad-down {
+  padding-bottom: 2cm;
+}
+
+.pad-down2 {
+  padding-bottom: 2.5cm;
+}
+
+.move{
+
+  position: relative;
+
+  left: 40px;
+}
+
+.hour {  
+
+  font-size: 30px;
+}
+
 /*
  * Custom translucent site header
  */
