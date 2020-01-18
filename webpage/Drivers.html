@@ -108,7 +108,8 @@
                 //calculates avg value per time
                 //decides if subscription is good or bad value
                 //sends Hex value color code depending on how close it is to baseline
-                temp["Dollars/Hour"] = calculate(key, value);
+                let avg= calculate(key, value);
+                temp["Dollars/Hour"]=avg;
                 temp["color"] = getColor(avg, UV);
                 temp["Fair"] = getFair(avg, UV);
                 //###############################################################################################################
