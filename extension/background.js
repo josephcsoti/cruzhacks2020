@@ -29,9 +29,9 @@ let IsInList = (url) => {
       //alert(element)
       answer = true
     }
-  })
+  });
   return answer 
-}
+};
 // Global history
 let tabHist = []
 
@@ -39,7 +39,7 @@ let tabHist = []
 let server = (url, delta) => {
   let msg = "url: " + url + " delta: " + (delta/1000)
   alert(msg)
-}
+};
 
 // Calulate time diff
 let deltaCalc = (TH, now) => {
@@ -47,7 +47,7 @@ let deltaCalc = (TH, now) => {
   let url = TH[0]
   server(url, delta)
   tabHist = []
-}
+};
 
 let fetchData = () => {
   chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, (tabs) => {
@@ -60,7 +60,7 @@ let fetchData = () => {
         let timeStart = Date.now()
         tabHist = [url, timeStart];
     }
-  })
+  });
 }
 
 // Listen to tab change
@@ -73,11 +73,13 @@ chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
   if (tabHist.length === 2){
     deltaCalc(tabHist, Date.now())
   }
-})
+});
 
 //listen to tab reload
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if(changeInfo.url != null){
     fetchData()
   }
-})
+});
+
+
