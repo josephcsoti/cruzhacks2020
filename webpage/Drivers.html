@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <script>
+        let calculate=(service, time) =>{
+            let C= 1
+            if (service =="Netflix"){
+                C=8.99
+            }
+            if (service=="HBO"){
+                C=14.99
+            }
+            if (service=="Hulu"){
+                C=5.99
+            }
+            let avg = time/C
+            if (avg > 1) return (avg,False)
+            else return (avg,True)
+        }
+
+        fetch('http://example.com')
+            .then((data) => {
+                return data.json();
+                //grabs json data from servier
+            })
+            .then((json) => {
+                let Netflix = json["netflix"]["time"]
+                let HBO = json["HBO"]["time"]
+                let Hulu = json["HULU"]["time"]
+                //finds specific times for each site
+
+                let res = {
+                    "Netflix": Netflix,
+                    "HBO": HBO,
+                    "Hulu": Hulu
+                }
+
+                return res;
+                //returns array of all values
+            })
+            .then((res) => {
+
+                res.forEach((ele) => {
+                    let (avg, keep) = calculate(ele)
+                });
+                //calculates averages and keep/cancel boolen
+            })
+    </script>
+</body>
+
+</html>
