@@ -8,47 +8,51 @@
 <body>
     <script>
         let calculate=(service, time) =>{
+            //creates defulat Cost(C) value
             let C= 1
+            //finds C value based on which servie the average is being calculated for
             if (service =="Netflix"){
-                C=8.99
+                C=8.99;
             }
             if (service=="HBO"){
-                C=14.99
+                C=14.99;
             }
             if (service=="Hulu"){
-                C=5.99
+                C=5.99;
             }
-            let avg = time/C
-            if (avg > 1) return (avg,False)
-            else return (avg,True)
+            //calculates Average cost per time
+            let avg = C/time;
+            //decides if subscription is good or bad value
+            //using $1 per hour as temporary baseline for good
+            if (avg > 1) return (avg,False);
+            else return (avg,True);
         }
 
         fetch('http://example.com')
+        //grabs json data from servier
             .then((data) => {
                 return data.json();
-                //grabs json data from servier
             })
             .then((json) => {
+                //finds specific times for each site
                 let Netflix = json["netflix"]["time"]
                 let HBO = json["HBO"]["time"]
                 let Hulu = json["HULU"]["time"]
-                //finds specific times for each site
-
+                //creates new json dictonary of values for websites and returns that
                 let res = {
                     "Netflix": Netflix,
                     "HBO": HBO,
                     "Hulu": Hulu
-                }
+                };
 
                 return res;
-                //returns array of all values
             })
             .then((res) => {
-
+                //calculates averages and keep/cancel for each element in the Dictonary
                 res.forEach((ele) => {
                     let (avg, keep) = calculate(ele)
                 });
-                //calculates averages and keep/cancel boolen
+
             })
     </script>
 </body>
