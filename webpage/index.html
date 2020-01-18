@@ -286,27 +286,27 @@
     document.getElementById("Hulu_cost").innerHTML = data.Hulu.DollarsPerHour;
     document.getElementById("hulu_hours").innerHTML = data.Hulu.time;
     document.getElementById("hulu_color").style.color= data.Hulu.color;
-    // document.getElementById("youtube_cost").innerHTML = data.Youtube.DollarsPerHour;
-    // document.getElementById("youtube_hours").innerHTML = data.Youtube.time;
-    // document.getElementById("youtube_color").style.color= data.Youtube.color;
+    document.getElementById("youtube_cost").innerHTML = data.Youtube.DollarsPerHour;
+    document.getElementById("youtube_hours").innerHTML = data.Youtube.time;
+    document.getElementById("youtube_color").style.color= data.Youtube.color;
     document.getElementById("HBO_cost").innerHTML = data.HBO.DollarsPerHour;
     document.getElementById("HBO_hours").innerHTML = data.HBO.time;
     document.getElementById("HBO_color").style.color= data.HBO.color;
-    // document.getElementById("apple_cost").innerHTML = data.AppleTV.DollarsPerHour;
-    // document.getElementById("apple_hours").innerHTML = data.AppleTV.time;
-    // document.getElementById("apple_color").style.color= data.AppleTV.color;
-    // document.getElementById("disney_cost").innerHTML = data.DisneyPlus.DollarsPerHour;
-    // document.getElementById("disney_hours").innerHTML = data.DisneyPlus.time;
-    // document.getElementById("disney_color").style.color= data.DisneyPlus.color;
-    // document.getElementById("Crunchyroll_cost").innerHTML = data.Crunchyroll.DollarsPerHour;
-    // document.getElementById("Crunchyroll_hours").innerHTML = data.Crunchyroll.time;
-    // document.getElementById("Crunchyroll_color").style.color= data.Crunchyroll.color;
-    // document.getElementById("xfinity_cost").innerHTML = data.Xfinity.DollarsPerHour;
-    // document.getElementById("xfinity_hours").innerHTML = data.Xfinity.time;
-    // document.getElementById("xfinity_color").style.color= data.Xfinity.color;
-    // document.getElementById("amazon_cost").innerHTML = data.AmazonPrime.DollarsPerHour;
-    // document.getElementById("amazon_hours").innerHTML = data.AmazonPrime.time;
-    // document.getElementById("amazon_color").style.color= data.AmazonPrime.color;
+    document.getElementById("apple_cost").innerHTML = data.AppleTV.DollarsPerHour;
+    document.getElementById("apple_hours").innerHTML = data.AppleTV.time;
+    document.getElementById("apple_color").style.color= data.AppleTV.color;
+    document.getElementById("disney_cost").innerHTML = data.DisneyPlus.DollarsPerHour;
+    document.getElementById("disney_hours").innerHTML = data.DisneyPlus.time;
+    document.getElementById("disney_color").style.color= data.DisneyPlus.color;
+    document.getElementById("Crunchyroll_cost").innerHTML = data.Crunchyroll.DollarsPerHour;
+    document.getElementById("Crunchyroll_hours").innerHTML = data.Crunchyroll.time;
+    document.getElementById("Crunchyroll_color").style.color= data.Crunchyroll.color;
+    document.getElementById("xfinity_cost").innerHTML = data.Xfinity.DollarsPerHour;
+    document.getElementById("xfinity_hours").innerHTML = data.Xfinity.time;
+    document.getElementById("xfinity_color").style.color= data.Xfinity.color;
+    document.getElementById("amazon_cost").innerHTML = data.AmazonPrime.DollarsPerHour;
+    document.getElementById("amazon_hours").innerHTML = data.AmazonPrime.time;
+    document.getElementById("amazon_color").style.color= data.AmazonPrime.color;
     
     document.getElementById("Cost").innerHTML = Cost.toFixed(2);
     document.getElementById("avgCost").innerHTML = (Cost / TotalTime).toFixed(2);
@@ -325,22 +325,22 @@
       let HBO = jsonInt(data["time_hbo"]);
       let Hulu = jsonInt(data["time_hulu"]);
       let Netflix = jsonInt(data["time_netflix"]);
-      // let Youtube = jsonInt(data["time_youtube"]);
-      // let Xfinity = jsonInt(data["time_xfinity"]);
-      // let Crunchyroll = jsonInt(data["time_crunchyroll"]);
-      // let DisneyPlus = jsonInt(data["time_disneyplus"]);
-      // let AppleTV = jsonInt(data["time_appletv"]);
-      // let AmazonPrime = jsonInt(data["time_amazonprime"]);
+      let Youtube = jsonInt(data["time_youtube"]);
+      let Xfinity = jsonInt(data["time_xfinity"]);
+      let Crunchyroll = jsonInt(data["time_crunchyroll"]);
+      let DisneyPlus = jsonInt(data["time_disneyplus"]);
+      let AppleTV = jsonInt(data["time_appletv"]);
+      let AmazonPrime = jsonInt(data["time_amazonprime"]);
       //finds global values 
       let GHBO = jsonInt(data["global_hbo"]);
       let GHulu = jsonInt(data["global_hulu"]);
       let GNetflix = jsonInt(data["global_netflix"]);
-      // let GYoutube = jsonInt(data["global_youtube"]);
-      // let GXfinity = jsonInt(data["global_xfinity"]);
-      // let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
-      // let GDisneyPlus = jsonInt(data["global_disneyplus"]);
-      // let GAppleTV = jsonInt(data["global_appletv"]);
-      // let GAmazonPrime = jsonInt(data["global_amazonprime"]);
+      let GYoutube = jsonInt(data["global_youtube"]);
+      let GXfinity = jsonInt(data["global_xfinity"]);
+      let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
+      let GDisneyPlus = jsonInt(data["global_disneyplus"]);
+      let GAppleTV = jsonInt(data["global_appletv"]);
+      let GAmazonPrime = jsonInt(data["global_amazonprime"]);
       //gets name and sends it to UI
       let Name = jsonString(data["name"]);
       document.getElementById("name").innerHTML = Name
@@ -350,12 +350,12 @@
         "Netflix": GNetflix,
         "HBO": GHBO,
         "Hulu": GHulu,
-        // "Youtube":GYoutube,
-        // "Xfinity":GXfinity,
-        // "Crunchyroll":GCrunchyroll,
-        // "DisneyPlus":GDisneyPlus,
-        // "AppleTV":GAppleTV,
-        // "AmazonPrime":GAmazonPrime,
+        "Youtube":GYoutube,
+        "Xfinity":GXfinity,
+        "Crunchyroll":GCrunchyroll,
+        "DisneyPlus":GDisneyPlus,
+        "AppleTV":GAppleTV,
+        "AmazonPrime":GAmazonPrime,
       }
       console.log(globe);
       //sending global avg to UI
@@ -373,12 +373,12 @@
         "Netflix": Netflix,
         "HBO": HBO,
         "Hulu": Hulu,
-        // "Youtube":Youtube,
-        // "Xfinity":Xfinity,
-        // "Crunchyroll":Crunchyroll,
-        // "DisneyPlus":DisneyPlus,
-        // "AppleTV":AppleTV,
-        // "AmazonPrime":AmazonPrime,
+        "Youtube":Youtube,
+        "Xfinity":Xfinity,
+        "Crunchyroll":Crunchyroll,
+        "DisneyPlus":DisneyPlus,
+        "AppleTV":AppleTV,
+        "AmazonPrime":AmazonPrime,
       };
       return res;
     })
