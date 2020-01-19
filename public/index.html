@@ -14,14 +14,15 @@
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="49285931752-aeuf981ns9bkgdoliha9ilqdm56po2at.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-  <meta name="google-signin-client_id"
-    content="49285931752-aeuf981ns9bkgdoliha9ilqdm56po2at.apps.googleusercontent.com">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
   <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
@@ -52,7 +53,23 @@
         <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
         <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg> -->
       </a>
-      <div class="g-signin2 pt-2" data-onsuccess="onSignIn"></div>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <script>
+        function onSignIn(googleUser) {
+          // Useful data for your client-side scripts:
+          var profile = googleUser.getBasicProfile();
+          console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+          console.log('Full Name: ' + profile.getName());
+          console.log('Given Name: ' + profile.getGivenName());
+          console.log('Family Name: ' + profile.getFamilyName());
+          console.log("Image URL: " + profile.getImageUrl());
+          console.log("Email: " + profile.getEmail());
+  
+          // The ID token you need to pass to your backend:
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log("ID Token: " + id_token);
+        }
+      </script>
 
       <!-- <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
