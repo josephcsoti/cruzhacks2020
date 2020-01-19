@@ -20,7 +20,7 @@ slider.oninput = function () {
 }
 var UV = document.getElementById("myRange").value / 100;
 document.getElementById("myRange").addEventListener('change', (event) => {
-  var UV = document.getElementById("myRange").value / 100;
+  UV = document.getElementById("myRange").value / 100;
   getdata();
   console.log(UV)
 });
