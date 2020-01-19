@@ -131,11 +131,11 @@ function buttonClick() {
 
   NetflixBut(2)
   HBOBut(0)
-  HuluBut(99)
+  HuluBut(1)
   YouTubeBut(99)
   XfinityBut(0)
   CrunchyRollBut(99)
-  DisneyPlusBut(99)
+  DisneyPlusBut(0)
   AppleTVBut(0)
   AmazonPrimeBut(1)
 
