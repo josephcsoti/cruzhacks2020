@@ -44,9 +44,10 @@ let calculate = (service, time) => {
   }
   //calculates Average cost per time
   if (C = 0) return 0;
-  else
+  else {
     let avg = C / time;
-  return avg.toFixed(2);
+    return avg.toFixed(2);
+  }
 }
 //helper functuin to find color Value based on avg compared to UV
 let getColor = (avg, UV) => {
