@@ -157,7 +157,6 @@ let getdata = () => {
     })
     .then((json) => {
       let data = json["fields"];
-      UV = 1;
       Ne = jsonDouble(data["netflix_price"]);
       H = jsonDouble(data["hbo_price"]);
       Hu = jsonDouble(data["hulu_price"]);
