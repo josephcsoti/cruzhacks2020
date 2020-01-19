@@ -148,6 +148,7 @@ function buttonClick() {
   readDB("dylan").then(
     (res) => {
       document.getElementById("status").innerHTML = res['netflix_price'];
+
     }
   );
 }
@@ -157,6 +158,13 @@ function main() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  readDB("dylan").then(
+    (res) => {
+      if (res['netflix_price'] == 12.99) {
+        document.getElementById('netflix3').classList.add('active');
+      }
+    }
+  );
   document.getElementById('myButton').addEventListener('click', buttonClick);
   main();
 });
