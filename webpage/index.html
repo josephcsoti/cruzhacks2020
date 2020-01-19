@@ -269,6 +269,10 @@
     return json["integerValue"]
   }
   //helper funciton to get the time value for each server
+  let jsonDouble = (json) => {
+    return (json["doubleValue"]).toFixed(2)
+  }
+  //helper funciton to get the time value for each server
   let jsonString = (json) => {
     return json["stringValue"]
   }
@@ -323,25 +327,25 @@
       // accsesses dara in json file
       let data = json["fields"];
       //finds specific times for each site
-      let HBO = jsonInt(data["time_hbo"]);
-      let Hulu = jsonInt(data["time_hulu"]);
-      let Netflix = jsonInt(data["time_netflix"]);
-      let Youtube = jsonInt(data["time_youtube"]);
-      let Xfinity = jsonInt(data["time_xfinity"]);
-      let Crunchyroll = jsonInt(data["time_crunchyroll"]);
-      let DisneyPlus = jsonInt(data["time_disneyplus"]);
-      let AppleTV = jsonInt(data["time_appletv"]);
-      let AmazonPrime = jsonInt(data["time_amazonprime"]);
+      let HBO = jsonDouble(data["time_hbo"]);
+      let Hulu = jsonDouble(data["time_hulu"]);
+      let Netflix = jsonDouble(data["time_netflix"]);
+      let Youtube = jsonDouble(data["time_youtube"]);
+      let Xfinity = jsonDouble(data["time_xfinity"]);
+      let Crunchyroll = jsonDouble(data["time_crunchyroll"]);
+      let DisneyPlus = jsonDouble(data["time_disneyplus"]);
+      let AppleTV = jsonDouble(data["time_appletv"]);
+      let AmazonPrime = jsonDouble(data["time_amazonprime"]);
       //finds global values 
-      let GHBO = jsonInt(data["global_hbo"]);
-      let GHulu = jsonInt(data["global_hulu"]);
-      let GNetflix = jsonInt(data["global_netflix"]);
-      let GYoutube = jsonInt(data["global_youtube"]);
-      let GXfinity = jsonInt(data["global_xfinity"]);
-      let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
-      let GDisneyPlus = jsonInt(data["global_disneyplus"]);
-      let GAppleTV = jsonInt(data["global_appletv"]);
-      let GAmazonPrime = jsonInt(data["global_amazonprime"]);
+      let GHBO = jsonDouble(data["global_hbo"]);
+      let GHulu = jsonDouble(data["global_hulu"]);
+      let GNetflix = jsonDouble(data["global_netflix"]);
+      let GYoutube = jsonDouble(data["global_youtube"]);
+      let GXfinity = jsonDouble(data["global_xfinity"]);
+      let GCrunchyroll = jsonDouble(data["global_crunchyroll"]);
+      let GDisneyPlus = jsonDouble(data["global_disneyplus"]);
+      let GAppleTV = jsonDouble(data["global_appletv"]);
+      let GAmazonPrime = jsonDouble(data["global_amazonprime"]);
       //gets name and sends it to UI
       let Name = jsonString(data["name"]);
       document.getElementById("name").innerHTML = Name
