@@ -42,7 +42,7 @@ let updateField = (user, service, delta) => {
 
 // Push to db
 let pushDB = (user) => {
-  var ref = db.collection("user_press").doc(user);
+  var ref = db.collection("user_prefs").doc(user);
 
   // Set the "dummythingy" field of the user == data
   return ref.set({
