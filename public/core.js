@@ -72,7 +72,7 @@ let jsonInt = (json) => {
 }
 //helper funciton to get the time value for each server
 let jsonDouble = (json) => {
-  if(json['integerValue']) return 0.00
+  if (json['integerValue']) return 0.00
   else return json["doubleValue"]
 }
 //helper funciton to get the time value for each server
@@ -131,9 +131,10 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 //gets users price information
-let email=getCookie('profile');
+let email = getCookie('profile');
 console.log("cookie: " + document.cookie);
-fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_prefs/' + email +'/')
+fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_prefs/' + email + '/')
+//applys user preference in pricing
   .then((data) => {
     return data.json();
   })
@@ -152,7 +153,7 @@ fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(
   })
   //gets users data
   .then(() => {
-    fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/' + email +'/')
+    fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/' + email + '/')
       //grabs json data from servier
       .then((data) => {
         return data.json();
@@ -170,43 +171,10 @@ fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(
         let DisneyPlus = jsonDouble(data["time_disneyplus"]).toFixed(2);
         let AppleTV = jsonDouble(data["time_appletv"]).toFixed(2);
         let AmazonPrime = jsonDouble(data["time_amazonprime"]).toFixed(2);
-        //finds global values 
-        let GHBO = jsonDouble(data["global_hbo"]).toFixed(2);
-        let GHulu = jsonDouble(data["global_hulu"]).toFixed(2);
-        let GNetflix = jsonDouble(data["global_netflix"]).toFixed(2);
-        let GYoutube = jsonDouble(data["global_youtube"]).toFixed(2);
-        let GXfinity = jsonDouble(data["global_xfinity"]).toFixed(2);
-        let GCrunchyroll = jsonDouble(data["global_crunchyroll"]).toFixed(2);
-        let GDisneyPlus = jsonDouble(data["global_disneyplus"]).toFixed(2);
-        let GAppleTV = jsonDouble(data["global_appletv"]).toFixed(2);
-        let GAmazonPrime = jsonDouble(data["global_amazonprime"]).toFixed(2);
         //gets name and sends it to UI
         let Name = jsonString(data["name"]);
         document.getElementById("name").innerHTML = Name
         //creates new json dictonary of values for websites and returns that
-        //json for global data to be sent to UI
-        let globe = {
-          "Netflix": GNetflix,
-          "HBO": GHBO,
-          "Hulu": GHulu,
-          "Youtube": GYoutube,
-          "Xfinity": GXfinity,
-          "Crunchyroll": GCrunchyroll,
-          "DisneyPlus": GDisneyPlus,
-          "AppleTV": GAppleTV,
-          "AmazonPrime": GAmazonPrime,
-        }
-        console.log(globe);
-        //sending global avg to UI
-        document.getElementById("avg_netflix_hours").innerHTML = globe.Netflix
-        document.getElementById("avg_hulu_hours").innerHTML = globe.Hulu
-        document.getElementById("avg_HBO_hours").innerHTML = globe.HBO
-        document.getElementById("avg_youtube_hours").innerHTML = globe.Youtube
-        document.getElementById("avg_xfinity_hours").innerHTML = globe.Xfinity
-        document.getElementById("avg_Crunchyroll_hours").innerHTML = globe.Crunchyroll
-        document.getElementById("avg_disney_hours").innerHTML = globe.DisneyPlus
-        document.getElementById("avg_apple_hours").innerHTML = globe.AppleTV
-        document.getElementById("avg_amazon_hours").innerHTML = globe.AmazonPrime
         //json for personal data
         let res = {
           "Netflix": Netflix,
@@ -259,5 +227,47 @@ fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(
       //sends UI json to be updated to the website UI
       .then((UI) => {
         updateUI(UI)
+      })
+      .then(() => {
+        fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/global_data/V1/')
+          .then((data) => {
+            return data.json();
+          })
+          .then((json) => {
+            let data = json["fields"];
+            //finds global values 
+            let GHBO = jsonDouble(data["global_hbo"]).toFixed(2);
+            let GHulu = jsonDouble(data["global_hulu"]).toFixed(2);
+            let GNetflix = jsonDouble(data["global_netflix"]).toFixed(2);
+            let GYoutube = jsonDouble(data["global_youtube"]).toFixed(2);
+            let GXfinity = jsonDouble(data["global_xfinity"]).toFixed(2);
+            let GCrunchyroll = jsonDouble(data["global_crunchyroll"]).toFixed(2);
+            let GDisneyPlus = jsonDouble(data["global_disneyplus"]).toFixed(2);
+            let GAppleTV = jsonDouble(data["global_appletv"]).toFixed(2);
+            let GAmazonPrime = jsonDouble(data["global_amazonprime"]).toFixed(2);
+            //json for global data to be sent to UI
+            let globe = {
+              "Netflix": GNetflix,
+              "HBO": GHBO,
+              "Hulu": GHulu,
+              "Youtube": GYoutube,
+              "Xfinity": GXfinity,
+              "Crunchyroll": GCrunchyroll,
+              "DisneyPlus": GDisneyPlus,
+              "AppleTV": GAppleTV,
+              "AmazonPrime": GAmazonPrime,
+            }
+            console.log(globe);
+            //sending global avg to UI
+            document.getElementById("avg_netflix_hours").innerHTML = globe.Netflix
+            document.getElementById("avg_hulu_hours").innerHTML = globe.Hulu
+            document.getElementById("avg_HBO_hours").innerHTML = globe.HBO
+            document.getElementById("avg_youtube_hours").innerHTML = globe.Youtube
+            document.getElementById("avg_xfinity_hours").innerHTML = globe.Xfinity
+            document.getElementById("avg_Crunchyroll_hours").innerHTML = globe.Crunchyroll
+            document.getElementById("avg_disney_hours").innerHTML = globe.DisneyPlus
+            document.getElementById("avg_apple_hours").innerHTML = globe.AppleTV
+            document.getElementById("avg_amazon_hours").innerHTML = globe.AmazonPrime
+          })
       })
   })
