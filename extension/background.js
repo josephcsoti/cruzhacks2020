@@ -9,6 +9,15 @@
 
 // --- Start of SubSaver.space --- ///
 
+//Prompt user for username if not present
+var userName = ""
+let getName = () => {
+  if(userName.length() === 0){
+    var userNameEntry = prompt("Please enter your SubSaver email.")
+    userName=userNameEntry
+  }
+}
+
 
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
@@ -98,7 +107,7 @@ let cleanURL = (link) => {
 
 // Put to server
 let server = (url, delta) => {
-  let u = 'dylan'
+  let u = userName
   let s = urlToService(url)
   let d = (delta/360000)
 
@@ -119,6 +128,7 @@ let deltaCalc = (TH, now) => {
 
   tabHist = []
 };
+
 
 // Query tabs for url change
 let fetchData = () => {
