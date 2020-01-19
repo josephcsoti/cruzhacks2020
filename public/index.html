@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+
+  <meta name="google-signin-client_id"
+    content="49285931752-aeuf981ns9bkgdoliha9ilqdm56po2at.apps.googleusercontent.com">
+
+  <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title>Product example for Bootstrap</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/product/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/product.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="site-header sticky-top py-1">
+    <div class="d-flex flex-row pl-3 pr-3 justify-content-between">
+      <a class="py-0" href="#">
+        <img src="img/subsaver-white.png" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto">
+
+        <!-- <circle cx="12" cy="12" r="10"></circle>
+        <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+        <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+        <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+        <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+        <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+        <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg> -->
+      </a>
+      <div class="g-signin2 pt-2" data-onsuccess="onSignIn"></div>
+
+      <!-- <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
+    </div>
+    
+  </nav>
+
+  <div class="position-relative overflow-hidden p-0 p-md-0 m-md-0 text-center text-white bg-secondary">
+    <div class="col-md-10 p-lg-5 mx-auto my-5">
+      <p class=display-4> <span id="name"></span>, your streaming cost is</p>
+      <h1 class="display-1 font-weight-normal move pad-down" id="avg_color" ;>$<span id="avgCost"></span>
+        <scan class="hour"> / hour</scan>
+        </scan>
+      </h1>
+      <h1 class="display-1 font-weight-normal move">$<span id="Cost"></span>
+        <scan class="hour">/ month</scan>
+      </h1>
+    </div>
+  </div>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-0 pl-md-0">
+    <div class="bg-dark mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <a href="https://www.netflix.com">
+        <img src="img/netflix-logo.png" href="https://www.netflix.com/" class="img-fluid" style="width: 60%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="netflix_color" ;>$<span id="netflix_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="netflix_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_netflix_hours"> </span> hours</h2>
+      </div>
+    </div>
+    <div class="bg-light mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <a href="https://www.hulu.com">
+        <img src="img/hulu-logo.png" class="img-fluid" style="width: 80%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="hulu_color" ;>$<span id="Hulu_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="hulu_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_hulu_hours"></span> hours</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-0 pl-md-0">
+    <div class="bg-light mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <a href="https://www.youtube.com">
+        <img src="img/youtube-logo.png" class="img-fluid" style="width: 50%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="youtube_color" ;>$<span id="youtube_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="youtube_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_youtube_hours"></span> hours</h2>
+      </div>
+    </div>
+    <div class="bg-dark mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <a href="https://www.hbo.com">
+        <img src="img/hbo-logo.png" class="img-fluid pad-down" style="width: 80%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="HBO_color" ;>$<span id="HBO_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="HBO_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_HBO_hours"></span> hours</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-0 pl-md-0">
+    <div class="bg-dark mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 p-3">
+        <a href="https://www.apple.com/tv">
+        <img src="img/apple-white-logo.png" class="img-fluid" style="width: 100%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="apple_color" ;>$<span id="apple_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="apple_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_apple_hours"> hours</span> hours</h2>
+      </div>
+    </div>
+    <div class="bg-light mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <a href="https://www.disneyplus.com">
+        <img src="img/disney-logo.png" class="img-fluid" style="width: 80%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="disney_color" ;>$<span id="disney_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="disney_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_disney_hours"></span> hours</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-0 pl-md-0">
+    <div class="bg-light mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <a href="https://www.Crunchyroll.com">
+        <img src="img/Crunchyroll-Logo.png" class="img-fluid" style="width: 50%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="Crunchyroll_color" ;>$<span id="Crunchyroll_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="Crunchyroll_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_Crunchyroll_hours"></span> hours</h2>
+      </div>
+    </div>
+    <div class="bg-dark mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div class="my-3 py-3">
+        <a href="https://www.xfinty.com">
+        <img src="img/xfinity-red-logo.png" class="img-fluid pad-down2 pad-up" style="width: 80%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="xfinity_color" ;>$<span id="xfinity_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="xfinity_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_xfinity_hours"></span> hours</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="d-md-flex flex-md-equal w-100 my-md-0 pl-md-0">
+    <div class="bg-light mr-md-0 pt-0 px-0 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <a href="https://www.amazon.com/Amazon-Video/b?ie=UTF8&node=2858778011">
+        <img src="img/amazon-logo.png" class="img-fluid pad-down" style="width: 50%;" alt="Responsive image">
+        </a>
+        <h2 class="display-5">
+          <h2 id="amazon_color" ;>$<span id="amazon_cost"></span>/hour</h2>
+        </h2>
+        <h2 class="display-5"><span id="amazon_hours"></span> hours</h2>
+        <h2 class="display-5">Global average: <span id="avg_amazon_hours"></span> hours</h2>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="container py-5">
+    <div class="column">
+      <div class="col-12 col-md">
+
+        <small class="d-block mb-3 text-muted">&copy; Cruzhacks 2020</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>About</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Team</a></li>
+          <li><a class="text-muted" href="#">Locations</a></li>
+          <li><a class="text-muted" href="#">Privacy</a></li>
+          <li><a class="text-muted" href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../../assets/js/vendor/popper.min.js"></script>
+  <script src="../../dist/js/bootstrap.min.js"></script>
+  <script src="../../assets/js/vendor/holder.min.js"></script>
+  <script>
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+
+  <script>
+    let onSignIn = (googleUser) => {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  }
+  </script>
+</body>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="core.js"></script>
+
+</html>
