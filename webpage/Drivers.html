@@ -121,22 +121,22 @@
             let HBO = jsonInt(data["time_hbo"]);
             let Hulu = jsonInt(data["time_hulu"]);
             let Netflix = jsonInt(data["time_netflix"]);
-            // let Youtube = jsonInt(data["time_youtube"]);
-            // let Xfinity = jsonInt(data["time_xfinity"]);
-            // let Crunchyroll = jsonInt(data["time_crunchyroll"]);
-            // let DisneyPlus = jsonInt(data["time_disneyplus"]);
-            // let AppleTV = jsonInt(data["time_appletv"]);
-            // let AmazonPrime = jsonInt(data["time_amazonprime"]);
+            let Youtube = jsonInt(data["time_youtube"]);
+            let Xfinity = jsonInt(data["time_xfinity"]);
+            let Crunchyroll = jsonInt(data["time_crunchyroll"]);
+            let DisneyPlus = jsonInt(data["time_disneyplus"]);
+            let AppleTV = jsonInt(data["time_appletv"]);
+            let AmazonPrime = jsonInt(data["time_amazonprime"]);
             //finds global values 
             let GHBO = jsonInt(data["global_hbo"]);
             let GHulu = jsonInt(data["global_hulu"]);
             let GNetflix = jsonInt(data["global_netflix"]);
-            // let GYoutube = jsonInt(data["global_youtube"]);
-            // let GXfinity = jsonInt(data["global_xfinity"]);
-            // let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
-            // let GDisneyPlus = jsonInt(data["global_disneyplus"]);
-            // let GAppleTV = jsonInt(data["global_appletv"]);
-            // let GAmazonPrime = jsonInt(data["global_amazonprime"]);
+            let GYoutube = jsonInt(data["global_youtube"]);
+            let GXfinity = jsonInt(data["global_xfinity"]);
+            let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
+            let GDisneyPlus = jsonInt(data["global_disneyplus"]);
+            let GAppleTV = jsonInt(data["global_appletv"]);
+            let GAmazonPrime = jsonInt(data["global_amazonprime"]);
             //gets name and sends it to UI
             let Name=jsonString(data["name"]);
             document.getElementById("Name").innerHTML = "Hello "+Name+" your monthly spending is:"
@@ -146,12 +146,12 @@
                 "Netflix": GNetflix,
                 "HBO": GHBO,
                 "Hulu": GHulu,
-                // "Youtube":GYoutube,
-                // "Xfinity":GXfinity,
-                // "Crunchyroll":GCrunchyroll,
-                // "DisneyPlus":GDisneyPlus,
-                // "AppleTV":GAppleTV,
-                // "AmazonPrime":GAmazonPrime,
+                "Youtube":GYoutube,
+                "Xfinity":GXfinity,
+                "Crunchyroll":GCrunchyroll,
+                "DisneyPlus":GDisneyPlus,
+                "AppleTV":GAppleTV,
+                "AmazonPrime":GAmazonPrime,
             }
             console.log(globe);
             Object.entries(globe).forEach(([key, value]) => {
@@ -163,12 +163,12 @@
                 "Netflix": Netflix,
                 "HBO": HBO,
                 "Hulu": Hulu,
-                // "Youtube":Youtube,
-                // "Xfinity":Xfinity,
-                // "Crunchyroll":Crunchyroll,
-                // "DisneyPlus":DisneyPlus,
-                // "AppleTV":AppleTV,
-                // "AmazonPrime":AmazonPrime,
+                "Youtube":Youtube,
+                "Xfinity":Xfinity,
+                "Crunchyroll":Crunchyroll,
+                "DisneyPlus":DisneyPlus,
+                "AppleTV":AppleTV,
+                "AmazonPrime":AmazonPrime,
             };
             return res;
         })

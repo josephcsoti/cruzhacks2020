@@ -34,9 +34,9 @@
 <body>
 
   <nav class="site-header sticky-top py-1">
-    <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2" href="#">
-        <img src="subsaver.png" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    <div class="d-flex flex-row pl-3 justify-content-start">
+      <a class="py-0" href="#">
+        <img src="subsaver_white.png" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
@@ -46,36 +46,22 @@
         <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
         <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
       </a>
-      <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
+      <!-- <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
       <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-      <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+      <a class="py-2 d-none d-md-inline-block" href="#">Cart</a> -->
     </div>
   </nav>
 
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-
-    <!-- <div>
-
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-          <a class="py-1" href="#">
-          </a>
-          <a class="py-2 d-none d-md-inline-block" href="#">Current</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">3 Months</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">6 Months</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">1 Year</a>
-          <a class="py-2 d-none d-md-inline-block" href="#">All Time</a>
-        </div>
-      </div> -->
-
+  <div class="position-relative overflow-hidden p-0 p-md-0 m-md-0 text-center text-white bg-secondary">
     <div class="col-md-10 p-lg-5 mx-auto my-5">
       <p class=display-4> <span id="name"></span>, your streaming cost is</p>
-      <h1 class="display-1 font-weight-normal move pad-down" id="avg_color";>$<span id="avgCost"></span><scan class="hour">/ hour</scan></scan></h1>
+      <h1 class="display-1 font-weight-normal move pad-down" id="avg_color";>$<span id="avgCost"></span><scan class="hour"> / hour</scan></scan></h1>
       <h1 class="display-1 font-weight-normal move">$<span id="Cost"></span>
-        <scan class="hour">/month</scan>
+        <scan class="hour">/ month</scan>
       </h1>
     </div>
   </div>
@@ -172,48 +158,10 @@
 
 
   <footer class="container py-5">
-    <div class="row">
+    <div class="column">
       <div class="col-12 col-md">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-          <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
-          <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
-          <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
-          <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
-          <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
-        </svg>
-        <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Features</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Cool stuff</a></li>
-          <li><a class="text-muted" href="#">Random feature</a></li>
-          <li><a class="text-muted" href="#">Team feature</a></li>
-          <li><a class="text-muted" href="#">Stuff for developers</a></li>
-          <li><a class="text-muted" href="#">Another one</a></li>
-          <li><a class="text-muted" href="#">Last time</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Resource</a></li>
-          <li><a class="text-muted" href="#">Resource name</a></li>
-          <li><a class="text-muted" href="#">Another resource</a></li>
-          <li><a class="text-muted" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Business</a></li>
-          <li><a class="text-muted" href="#">Education</a></li>
-          <li><a class="text-muted" href="#">Government</a></li>
-          <li><a class="text-muted" href="#">Gaming</a></li>
-        </ul>
+      
+        <small class="d-block mb-3 text-muted">&copy; Cruzhacks 2020</small>
       </div>
       <div class="col-6 col-md">
         <h5>About</h5>
@@ -303,8 +251,7 @@
       if (avg > (UV * 1.5)) Color = "#FF0000";
       else Color = "#FF7000";
     }
-    else if (avg == UV) Color = "#FFFF00";
-    else if (avg < UV) {
+    else if (avg <= UV) {
       if (avg > (UV * 0.5)) Color = "#70FF00";
       else Color = "#00FF00";
     }
@@ -339,27 +286,27 @@
     document.getElementById("Hulu_cost").innerHTML = data.Hulu.DollarsPerHour;
     document.getElementById("hulu_hours").innerHTML = data.Hulu.time;
     document.getElementById("hulu_color").style.color= data.Hulu.color;
-    // document.getElementById("youtube_cost").innerHTML = data.Youtube.DollarsPerHour;
-    // document.getElementById("youtube_hours").innerHTML = data.Youtube.time;
-    // document.getElementById("youtube_color").style.color= data.Youtube.color;
+    document.getElementById("youtube_cost").innerHTML = data.Youtube.DollarsPerHour;
+    document.getElementById("youtube_hours").innerHTML = data.Youtube.time;
+    document.getElementById("youtube_color").style.color= data.Youtube.color;
     document.getElementById("HBO_cost").innerHTML = data.HBO.DollarsPerHour;
     document.getElementById("HBO_hours").innerHTML = data.HBO.time;
     document.getElementById("HBO_color").style.color= data.HBO.color;
-    // document.getElementById("apple_cost").innerHTML = data.AppleTV.DollarsPerHour;
-    // document.getElementById("apple_hours").innerHTML = data.AppleTV.time;
-    // document.getElementById("apple_color").style.color= data.AppleTV.color;
-    // document.getElementById("disney_cost").innerHTML = data.DisneyPlus.DollarsPerHour;
-    // document.getElementById("disney_hours").innerHTML = data.DisneyPlus.time;
-    // document.getElementById("disney_color").style.color= data.DisneyPlus.color;
-    // document.getElementById("Crunchyroll_cost").innerHTML = data.Crunchyroll.DollarsPerHour;
-    // document.getElementById("Crunchyroll_hours").innerHTML = data.Crunchyroll.time;
-    // document.getElementById("Crunchyroll_color").style.color= data.Crunchyroll.color;
-    // document.getElementById("xfinity_cost").innerHTML = data.Xfinity.DollarsPerHour;
-    // document.getElementById("xfinity_hours").innerHTML = data.Xfinity.time;
-    // document.getElementById("xfinity_color").style.color= data.Xfinity.color;
-    // document.getElementById("amazon_cost").innerHTML = data.AmazonPrime.DollarsPerHour;
-    // document.getElementById("amazon_hours").innerHTML = data.AmazonPrime.time;
-    // document.getElementById("amazon_color").style.color= data.AmazonPrime.color;
+    document.getElementById("apple_cost").innerHTML = data.AppleTV.DollarsPerHour;
+    document.getElementById("apple_hours").innerHTML = data.AppleTV.time;
+    document.getElementById("apple_color").style.color= data.AppleTV.color;
+    document.getElementById("disney_cost").innerHTML = data.DisneyPlus.DollarsPerHour;
+    document.getElementById("disney_hours").innerHTML = data.DisneyPlus.time;
+    document.getElementById("disney_color").style.color= data.DisneyPlus.color;
+    document.getElementById("Crunchyroll_cost").innerHTML = data.Crunchyroll.DollarsPerHour;
+    document.getElementById("Crunchyroll_hours").innerHTML = data.Crunchyroll.time;
+    document.getElementById("Crunchyroll_color").style.color= data.Crunchyroll.color;
+    document.getElementById("xfinity_cost").innerHTML = data.Xfinity.DollarsPerHour;
+    document.getElementById("xfinity_hours").innerHTML = data.Xfinity.time;
+    document.getElementById("xfinity_color").style.color= data.Xfinity.color;
+    document.getElementById("amazon_cost").innerHTML = data.AmazonPrime.DollarsPerHour;
+    document.getElementById("amazon_hours").innerHTML = data.AmazonPrime.time;
+    document.getElementById("amazon_color").style.color= data.AmazonPrime.color;
     
     document.getElementById("Cost").innerHTML = Cost.toFixed(2);
     document.getElementById("avgCost").innerHTML = (Cost / TotalTime).toFixed(2);
@@ -378,22 +325,22 @@
       let HBO = jsonInt(data["time_hbo"]);
       let Hulu = jsonInt(data["time_hulu"]);
       let Netflix = jsonInt(data["time_netflix"]);
-      // let Youtube = jsonInt(data["time_youtube"]);
-      // let Xfinity = jsonInt(data["time_xfinity"]);
-      // let Crunchyroll = jsonInt(data["time_crunchyroll"]);
-      // let DisneyPlus = jsonInt(data["time_disneyplus"]);
-      // let AppleTV = jsonInt(data["time_appletv"]);
-      // let AmazonPrime = jsonInt(data["time_amazonprime"]);
+      let Youtube = jsonInt(data["time_youtube"]);
+      let Xfinity = jsonInt(data["time_xfinity"]);
+      let Crunchyroll = jsonInt(data["time_crunchyroll"]);
+      let DisneyPlus = jsonInt(data["time_disneyplus"]);
+      let AppleTV = jsonInt(data["time_appletv"]);
+      let AmazonPrime = jsonInt(data["time_amazonprime"]);
       //finds global values 
       let GHBO = jsonInt(data["global_hbo"]);
       let GHulu = jsonInt(data["global_hulu"]);
       let GNetflix = jsonInt(data["global_netflix"]);
-      // let GYoutube = jsonInt(data["global_youtube"]);
-      // let GXfinity = jsonInt(data["global_xfinity"]);
-      // let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
-      // let GDisneyPlus = jsonInt(data["global_disneyplus"]);
-      // let GAppleTV = jsonInt(data["global_appletv"]);
-      // let GAmazonPrime = jsonInt(data["global_amazonprime"]);
+      let GYoutube = jsonInt(data["global_youtube"]);
+      let GXfinity = jsonInt(data["global_xfinity"]);
+      let GCrunchyroll = jsonInt(data["global_crunchyroll"]);
+      let GDisneyPlus = jsonInt(data["global_disneyplus"]);
+      let GAppleTV = jsonInt(data["global_appletv"]);
+      let GAmazonPrime = jsonInt(data["global_amazonprime"]);
       //gets name and sends it to UI
       let Name = jsonString(data["name"]);
       document.getElementById("name").innerHTML = Name
@@ -403,12 +350,12 @@
         "Netflix": GNetflix,
         "HBO": GHBO,
         "Hulu": GHulu,
-        // "Youtube":GYoutube,
-        // "Xfinity":GXfinity,
-        // "Crunchyroll":GCrunchyroll,
-        // "DisneyPlus":GDisneyPlus,
-        // "AppleTV":GAppleTV,
-        // "AmazonPrime":GAmazonPrime,
+        "Youtube":GYoutube,
+        "Xfinity":GXfinity,
+        "Crunchyroll":GCrunchyroll,
+        "DisneyPlus":GDisneyPlus,
+        "AppleTV":GAppleTV,
+        "AmazonPrime":GAmazonPrime,
       }
       console.log(globe);
       //sending global avg to UI
@@ -426,12 +373,12 @@
         "Netflix": Netflix,
         "HBO": HBO,
         "Hulu": Hulu,
-        // "Youtube":Youtube,
-        // "Xfinity":Xfinity,
-        // "Crunchyroll":Crunchyroll,
-        // "DisneyPlus":DisneyPlus,
-        // "AppleTV":AppleTV,
-        // "AmazonPrime":AmazonPrime,
+        "Youtube":Youtube,
+        "Xfinity":Xfinity,
+        "Crunchyroll":Crunchyroll,
+        "DisneyPlus":DisneyPlus,
+        "AppleTV":AppleTV,
+        "AmazonPrime":AmazonPrime,
       };
       return res;
     })

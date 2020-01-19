@@ -54,6 +54,7 @@ const URL_list = [
 let IsInList = (url) => {
   let answer = false
   URL_list.forEach(element => {
+<<<<<<< HEAD
     if (url.includes(element)) answer = true
   })
   return answer
@@ -85,6 +86,23 @@ let server = (url, delta) => {
 
   updateField(u, s, d)
 }
+=======
+    if (url.includes(element)){
+      //alert(element)
+      answer = true
+    }
+  });
+  return answer 
+};
+// Global history
+let tabHist = []
+
+// Put to server
+let server = (url, delta) => {
+  let msg = "url: " + url + " delta: " + (delta/1000)
+  alert(msg)
+};
+>>>>>>> 235e0fe8955043bc68c805928e3c529b4f0a846f
 
 // Calulate time diff
 let deltaCalc = (TH, now) => {
@@ -96,7 +114,7 @@ let deltaCalc = (TH, now) => {
   server(url, delta)
 
   tabHist = []
-}
+};
 
 // Query tabs for url change
 let fetchData = () => {
@@ -114,7 +132,7 @@ let fetchData = () => {
     } else {
       log("IRRELEVANT", url, Date.now())
     }
-  })
+  });
 }
 
 // Listen to tab change
@@ -127,13 +145,14 @@ chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
   if (tabHist.length === 2){
     deltaCalc(tabHist, Date.now())
   }
-})
+});
 
 //listen to tab reload
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   if(changeInfo.url != null){
     fetchData()
   }
+<<<<<<< HEAD
 })
 
 // --- Logging helpers --- //
@@ -144,3 +163,8 @@ let log = (action, url, time) => {
 let log_server = (user, service, delta) => {
   console.log('WROTE %s @ %s for %s', delta, service, user)
 }
+=======
+});
+
+
+>>>>>>> 235e0fe8955043bc68c805928e3c529b4f0a846f
