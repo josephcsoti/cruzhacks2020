@@ -1,10 +1,10 @@
 
 //Launcher (subsciprion )
 let NetflixBut = (input) =>{
-  if (input === 0){Ne = 0.00;}
-  if (input === 1){Ne = 8.99;}
+  if (input === 0){Ne = 8.99;}
+  if (input === 1){Ne = 12.99;}
   if (input === 2){Ne = 15.99;}
-  else{Ne = 12.99;} //standaard 
+  else{Ne = 0.00;} //defualt not owned
   
 }
 
@@ -72,3 +72,21 @@ let AmazonPrimeBut  = (input) =>{
 }
 
 
+
+function buttonClick() {
+  console.log("oh wawa");
+  if (document.getElementById("status").innerHTML == "Deactivated") {
+    document.getElementById("status").innerHTML = "Activated";
+  } else {
+    document.getElementById("status").innerHTML = "Deactivated";
+  }
+}
+
+function main() {
+  console.log("papa plzzzzz");
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('myButton').addEventListener('click', buttonClick);
+  main();
+});

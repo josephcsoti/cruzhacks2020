@@ -65,6 +65,12 @@ let urlToService = (url) => {
     case "www.youtube.com": return "time_youtube"
     case "www.hulu.com": return "time_hulu"
     case "www.hbo.com": return "time_hbo"
+    case "www.netflix.com": return "time_netflix"
+    case "www.xfinity.com": return "time_xfinity"
+    case "www.crunchyroll.com": return "time_crunchyroll"
+    case "www.disneyplus.com": return "time_disneyplus"
+    case "www.apple.com": return "time_appletv"
+    case "www.amazon.com": return "time_amazonprime"
     default: return "time_unknown"
   }
 }
