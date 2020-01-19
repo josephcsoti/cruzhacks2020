@@ -124,8 +124,16 @@ let updateUI = (data) => {
   document.getElementById("avgCost").innerHTML = (Cost / TotalTime).toFixed(2);
   document.getElementById("avg_color").style.color = getColor((Cost / TotalTime).toFixed(2), UV);
 }
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  console.log();
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
 //gets users price information
-fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_prefs/dylan/')
+let email=getCookie('profile');
+console.log("cookie: " + document.cookie);
+fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_prefs/' + email +'/')
   .then((data) => {
     return data.json();
   })
@@ -144,7 +152,7 @@ fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(
   })
   //gets users data
   .then(() => {
-    fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/dylan/')
+    fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_data/' + email +'/')
       //grabs json data from servier
       .then((data) => {
         return data.json();
