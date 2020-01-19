@@ -81,7 +81,7 @@ let readDB = (user) => {
   });
 }
 
-//Launcher (subsciprion )
+//Launcher (subsciprion ) settings price
 let NetflixBut = (input) =>{
   if (input === 0){Ne = 8.99;}
   if (input === 1){Ne = 12.99;}
