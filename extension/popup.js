@@ -8,7 +8,15 @@
 
 
 // --- Start of SubSaver.space --- ///
-
+    Ne =0.0
+    H =0.0
+    Hu =0.0
+    YT= 0.0
+    Xf=0.0
+    Cr=0.0
+    Dp=0.0
+    Ap=0.0
+    Az=0.0
 
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
@@ -33,12 +41,20 @@ let updateField = (user, service, delta) => {
 }
 
 // Push to db
-let pushDB = (user, data) => {
-  var ref = db.collection("user_data").doc(user);
+let pushDB = (user) => {
+  var ref = db.collection("user_press").doc(user);
 
   // Set the "dummythingy" field of the user == data
   return ref.set({
-      dummythingy: data
+      "amazonprime_price" : Az,
+      "appletv_price" : Ap,
+      "crunchyroll_price" : Cr,
+      "disneyplus_price" : Dp,
+      "hbo_price" : H,
+      "hulu_price" : Hu,
+      "netflix_price" : Ne,
+      "xfinity_price" : Xf,
+      "youtube_price" : YT
   })
   .then(function() {
       console.log("Document successfully written!");
@@ -47,6 +63,7 @@ let pushDB = (user, data) => {
       console.error("Error writing document: ", error);
   });
 }
+
 
 let readDB = (user) => {
   var docRef = db.collection("user_prefs").doc(user);
@@ -139,11 +156,11 @@ let AmazonPrimeBut  = (input) =>{
 
 
 function buttonClick() {
-  /*if (document.getElementById("status").innerHTML == "Deactivated") {
+  if (document.getElementById("status").innerHTML == "Deactivated") {
     document.getElementById("status").innerHTML = "Activated";
   } else {
     document.getElementById("status").innerHTML = "Deactivated";
-  }*/
+  }
 
   readDB("dylan").then(
     (res) => {
@@ -168,3 +185,5 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('myButton').addEventListener('click', buttonClick);
   main();
 });
+
+pushDB('dhharoot@ucsc.edu')
