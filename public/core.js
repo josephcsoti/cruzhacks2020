@@ -1,3 +1,13 @@
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value / 100; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value / 100;
+}
+
+
 //UV is user value based(will eventually be based on the users settings)
 //other variables are costs of various servises that could be changed based on what version of ther service the user has
 UV = 1;
