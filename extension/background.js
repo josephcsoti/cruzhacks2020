@@ -41,6 +41,22 @@ let updateField = (user, service, delta) => {
 
 }
 
+// Push to db
+let pushDB = (user, data) => {
+  var ref = db.collection("user_data").doc(user);
+
+  // Set the "dummythingy" field of the user == data
+  return ref.set({
+      dummythingy: data
+  })
+  .then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  });
+}
+
 // --- Start of chrome code --- ///
 
 // Global history
@@ -86,7 +102,7 @@ let urlToService = (url) => {
 
 // cleans url to just host
 let cleanURL = (link) => {
-  return (new URL(link)).hostname
+  return (new URL(link)).hostname.toString()
 }
 
 // Put to server
