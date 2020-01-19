@@ -43,7 +43,7 @@ let calculate = (service, time) => {
     C = Az;
   }
   //calculates Average cost per time
-  if (C == 0) return 0.00;
+  if (C == 0) return (0.00).toFixed(2);
   else if(time==0) return C.toFixed(2)
   else {
     let avg = C / time;
