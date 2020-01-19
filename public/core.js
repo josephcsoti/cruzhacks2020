@@ -43,8 +43,12 @@ let calculate = (service, time) => {
     C = Az;
   }
   //calculates Average cost per time
-  let avg = C / time;
-  return avg.toFixed(2);
+  if (C == 0) return (0.00).toFixed(2);
+  else if(time==0) return C.toFixed(2)
+  else {
+    let avg = C / time;
+    return avg.toFixed(2);
+  }
 }
 //helper functuin to find color Value based on avg compared to UV
 let getColor = (avg, UV) => {
@@ -134,7 +138,7 @@ function getCookie(name) {
 let email = getCookie('profile');
 console.log("cookie: " + document.cookie);
 fetch('https://firestore.googleapis.com/v1/projects/subsaverdotspace/databases/(default)/documents/user_prefs/' + email + '/')
-//applys user preference in pricing
+  //applys user preference in pricing
   .then((data) => {
     return data.json();
   })
