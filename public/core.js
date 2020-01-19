@@ -137,7 +137,6 @@ let updateUI = (data) => {
 
   let Cost = (Ne + H + Hu + YT + Xf + Cr + Dp + Ap + Az);
 
-  console.log(Cost);
   document.getElementById("Cost").innerHTML = Cost.toFixed(2);
   document.getElementById("avgCost").innerHTML = (Cost / TotalTime).toFixed(2);
   document.getElementById("avg_color").style.color = getColor((Cost / TotalTime).toFixed(2), UV);
@@ -145,7 +144,6 @@ let updateUI = (data) => {
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
-  console.log();
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
 //gets users price information
@@ -221,6 +219,7 @@ let getdata = () => {
             //sends Hex value color code depending on how close it is to baseline
             let avg = calculate(key, value);
             temp["DollarsPerHour"] = avg;
+            console.log(UV)
             temp["color"] = getColor(avg, UV);
             temp["Fair"] = getFair(avg, UV);
             //###############################################################################################################
