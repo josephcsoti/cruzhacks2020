@@ -113,17 +113,13 @@ let DisneyPlusBut = (input) =>{
 
 let AppleTVBut  = (input) =>{
   if (input == 0){Ap=4.99;}
-  else{}
+  else{Ap=0.00;}
 }
 
 let AmazonPrimeBut  = (input) =>{
   if (input == 0){Az=12.99;}
   if (input == 1){Az=8.99;}
   else{Az=0.00;}
-}
-
-let rand = () => {
-  return Math.floor((Math.random() * 2));
 }
 
 function buttonClick() {
@@ -133,15 +129,15 @@ function buttonClick() {
     document.getElementById("status").innerHTML = "Deactivated";
   }
 
-  NetflixBut(rand())
-  HBOBut(rand())
-  HuluBut(rand())
-  YouTubeBut(rand())
-  XfinityBut(rand())
-  CrunchyRollBut(rand())
-  DisneyPlusBut(rand())
-  AppleTVBut(rand())
-  AmazonPrimeBut(rand())
+  NetflixBut(2)
+  HBOBut(0)
+  HuluBut(99)
+  YouTubeBut(99)
+  XfinityBut(0)
+  CrunchyRollBut(99)
+  DisneyPlusBut(99)
+  AppleTVBut(0)
+  AmazonPrimeBut(1)
 
   pushDB('dhharoot@ucsc.edu')
 }
