@@ -93,7 +93,7 @@ let urlToService = (url) => {
 
 // cleans url to just host
 let cleanURL = (link) => {
-  return (new URL(link)).hostname
+  return (new URL(link)).hostname.toString()
 }
 
 // Put to server
